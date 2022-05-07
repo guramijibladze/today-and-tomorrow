@@ -1,7 +1,11 @@
 .container-fluid{
     background-color: rgb(100, 111, 121);
-    padding: 10px;
+    
     // filter: invert(0.30);
+
+    .row{
+        padding: 10px;
+    }
 }
 
 .col-xs-12{
