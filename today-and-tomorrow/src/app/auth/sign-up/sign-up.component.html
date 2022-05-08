@@ -1,1 +1,51 @@
-<p>sign-up works!</p>
+
+
+<div class="main">
+    <div class="Sign-up">
+        <p class="title" style="margin-bottom: 50px;">Sign up</p>
+
+        <div class="form">
+            <div class="Email">
+                <div style="display: flex; justify-content: space-between;">
+                    <label for="email">Email</label>
+
+                    <span>
+                        Already have an account? 
+                        <span style="color: rgb(21, 175, 21); cursor: pointer;" 
+                                [routerLink]="['/sign-in']"> Sign up</span>
+                    </span>
+                </div>
+                <div>
+                    <input type="text" 
+                            class="form-control" 
+                            aria-label="Username"
+                            aria-describedby="basic-addon1">
+                </div>
+            </div>
+
+            <div class="Password">
+                <div style="display: flex; justify-content: space-between;">
+                    <label for="email">Password</label>
+
+                    <span>
+                        <span>
+                            <img src="assets/icons/eye.png" width="25" height="25"> Show</span>
+                    </span>
+                </div>
+                <div>
+                    <input type="text" 
+                            class="form-control" 
+                            aria-label="Username"
+                            aria-describedby="basic-addon1">
+                </div>
+            </div>
+
+            <div class="log-in-button">
+                <button class="button">
+                    Sign up for free
+                </button>
+            </div>
+
+        </div>
+    </div>
+</div>

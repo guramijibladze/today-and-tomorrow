@@ -20,4 +20,8 @@ export class HeaderComponent implements OnInit {
   goToSignIn(){
     this.router.navigate(['sign-in']);
   }
+
+  goToSignUp(){
+    this.router.navigate(['sign-up']);
+  }
 }
