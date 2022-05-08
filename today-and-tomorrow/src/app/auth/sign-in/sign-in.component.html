@@ -11,7 +11,8 @@
 
                     <span>
                         "Need an account? "
-                        <span style="color: rgb(21, 175, 21);"> Sign up</span>
+                        <span style="color: rgb(21, 175, 21); cursor: pointer;"
+                                [routerLink]="['/sign-up']"> Sign up</span>
                     </span>
                 </div>
                 <div>
@@ -46,7 +47,9 @@
                 </button>
             </div>
 
-            <div class="forgot-password">
+            <div class="forgot-password"
+            style="cursor: pointer;"
+                [routerLink]="['/forgot-password']">
                 <p>Forgot password?</p>
             </div>
         </div>
