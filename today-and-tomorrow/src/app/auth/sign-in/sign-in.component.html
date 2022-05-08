@@ -3,55 +3,59 @@
 <div class="main">
     <div class="Log-in">
         <p class="title" style="margin-bottom: 50px;">Log in</p>
+       
+            <div class="form">
+                <div class="Email">
+                    <div style="display: flex; justify-content: space-between;">
+                        <label for="email">Email</label>
 
-        <div class="form">
-            <div class="Email">
-                <div style="display: flex; justify-content: space-between;">
-                    <label for="email">Email</label>
-
-                    <span>
-                        "Need an account? "
-                        <span style="color: rgb(21, 175, 21); cursor: pointer;"
-                                [routerLink]="['/sign-up']"> Sign up</span>
-                    </span>
-                </div>
-                <div>
-                    <input type="text" 
-                            class="form-control" 
-                            aria-label="Username"
-                            aria-describedby="basic-addon1">
-                </div>
-            </div>
-
-            <div class="Password">
-                <div style="display: flex; justify-content: space-between;">
-                    <label for="email">Password</label>
-
-                    <span>
-                        Password
                         <span>
-                            <img src="assets/icons/eye.png" width="25" height="25"> Show</span>
-                    </span>
+                            "Need an account? "
+                            <span style="color: rgb(21, 175, 21); cursor: pointer;"
+                                    [routerLink]="['/sign-up']"> Sign up</span>
+                        </span>
+                    </div>
+                    <div>
+                        <input type="text" 
+                                class="form-control" 
+                                aria-label="Username"
+                                aria-describedby="basic-addon1"
+                               >
+                    </div>
                 </div>
-                <div>
-                    <input type="text" 
-                            class="form-control" 
-                            aria-label="Username"
-                            aria-describedby="basic-addon1">
+
+                <div class="Password">
+                    <div style="display: flex; justify-content: space-between;">
+                        <label for="email">Password</label>
+
+                        <span>
+                            Password
+                            <span>
+                                <img src="assets/icons/eye.png" width="25" height="25"> Show</span>
+                        </span>
+                    </div>
+                    <div>
+                        <input type="text" 
+                                class="form-control" 
+                                aria-label="Username"
+                                aria-describedby="basic-addon1"
+                                >
+                    </div>
+                </div>
+
+                <div class="log-in-button">
+                    <button class="button"
+                           >
+                        Log in
+                    </button>
+                </div>
+
+                <div class="forgot-password"
+                    style="cursor: pointer;"
+                    [routerLink]="['/forgot-password']">
+                    <p>Forgot password?</p>
                 </div>
             </div>
-
-            <div class="log-in-button">
-                <button class="button">
-                    Log in
-                </button>
-            </div>
-
-            <div class="forgot-password"
-            style="cursor: pointer;"
-                [routerLink]="['/forgot-password']">
-                <p>Forgot password?</p>
-            </div>
-        </div>
+        
     </div>
 </div>
