@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TodayPageComponent } from './today-page/today-page.component';
+import { CatalogueRoutingModule } from './catalogue-routing.module';
 
 
 
@@ -9,7 +10,8 @@ import { TodayPageComponent } from './today-page/today-page.component';
     TodayPageComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    CatalogueRoutingModule
   ]
 })
 export class CatalogueModule { }

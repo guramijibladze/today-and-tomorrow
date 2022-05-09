@@ -3,7 +3,7 @@
 <div class="main">
     <div class="Log-in">
         <p class="title" style="margin-bottom: 50px;">Log in</p>
-       
+        <form (ngSubmit)="signIn(f.value)" #f="ngForm">
             <div class="form">
                 <div class="Email">
                     <div style="display: flex; justify-content: space-between;">
@@ -15,9 +15,11 @@
                                     [routerLink]="['/sign-up']"> Sign up</span>
                         </span>
                     </div>
-                    <div>
+                    <div class="input-group input-group-lg">
                         <input type="text" 
                                 class="form-control" 
+                                ngModel
+                                name="email"
                                 aria-label="Username"
                                 aria-describedby="basic-addon1"
                                >
@@ -34,8 +36,10 @@
                                 <img src="assets/icons/eye.png" width="25" height="25"> Show</span>
                         </span>
                     </div>
-                    <div>
+                    <div class="input-group input-group-lg">
                         <input type="text" 
+                                ngModel
+                                name="password"
                                 class="form-control" 
                                 aria-label="Username"
                                 aria-describedby="basic-addon1"
@@ -45,7 +49,7 @@
 
                 <div class="log-in-button">
                     <button class="button"
-                           >
+                            type="submit">
                         Log in
                     </button>
                 </div>
@@ -56,6 +60,6 @@
                     <p>Forgot password?</p>
                 </div>
             </div>
-        
+        </form>
     </div>
 </div>
