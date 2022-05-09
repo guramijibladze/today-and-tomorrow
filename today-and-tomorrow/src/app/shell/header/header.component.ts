@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
-import { ServiceService } from 'src/app/service/service.service';
+import { AuthService } from 'src/app/service/auth.service';
 
 
 @Component({
@@ -10,20 +10,18 @@ import { ServiceService } from 'src/app/service/service.service';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  isHiddenLogout: boolean = false
-  isHiddenLogin:boolean = true
+
+  get isLoggedIn(){
+    return this.auth.isLoggedIn
+  }
 
   constructor(
     private router: Router,
-    private serviceService: ServiceService,
-    private auth: AngularFireAuth
+    private auth: AuthService
   ) { }
 
   ngOnInit(): void {
-    this.serviceService.changestatus$.subscribe(res => {
-      this.isHiddenLogout = true
-      this.isHiddenLogin = false
-    })
+
   }
 
   goToSignIn(){
@@ -36,9 +34,6 @@ export class HeaderComponent implements OnInit {
 
   logout(){
     this.auth.signOut().then((res) => {
-      console.log(res)
-      this.isHiddenLogout = false
-      this.isHiddenLogin = true
       this.router.navigate(['/sign-in'])
     });
   }
