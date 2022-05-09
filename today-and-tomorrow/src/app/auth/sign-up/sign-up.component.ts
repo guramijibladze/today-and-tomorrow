@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
+import { ServiceService } from 'src/app/service/service.service';
 
 
 interface SignUp {
@@ -18,7 +19,8 @@ export class SignUpComponent implements OnInit {
 
   constructor(
     private auth: AngularFireAuth,
-    private router: Router
+    private router: Router,
+    private serviceService: ServiceService
   ) { }
 
   ngOnInit(): void {
@@ -30,6 +32,8 @@ export class SignUpComponent implements OnInit {
 
   signUp({email, password}:SignUp){
     this.auth.createUserWithEmailAndPassword(email, password).then((res) => {
+      this.router.navigate(['catalogue']);
+      this.serviceService.logIn()
       console.log(res)
     })
     // console.log('form:', {email, password})

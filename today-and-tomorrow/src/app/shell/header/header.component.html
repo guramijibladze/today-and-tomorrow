@@ -15,18 +15,25 @@
             </div>
             <div class="col-sm-4 col-xs-12">
               <div class="login-register">
-                <div class="log-in">
+                <div class="log-in" *ngIf="isHiddenLogin">
                     <button class="btn  login"
                             type="button"
                             (click)="goToSignIn()">
                         <b>Log in</b>
                     </button>
                 </div>
-                <div class="register">
+                <div class="register" *ngIf="isHiddenLogin">
                     <button class="btn register"
                             type="button"
                             (click)="goToSignUp()">
                         <b>Sign up</b>
+                    </button>
+                </div>
+                <div class="Log-out" *ngIf = "isHiddenLogout">
+                    <button class="btn logout"
+                            type="button"
+                            (click)="logout()">
+                        <b>Log out</b>
                     </button>
                 </div>
               </div>
