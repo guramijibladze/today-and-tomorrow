@@ -31,4 +31,8 @@ export class AuthService {
   signOut() {
     return this.auth.signOut();
   }
+
+  resetEmail(email:string){
+     return this.auth.sendPasswordResetEmail(email)
+  }
 }
