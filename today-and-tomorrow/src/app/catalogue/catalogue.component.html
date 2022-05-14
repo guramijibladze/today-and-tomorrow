@@ -1,6 +1,30 @@
 
 
-
 <div class="container-fluid">
+    <div class="main">
 
+        <div class="item" *ngFor="let item of menuBox; let i = index">
+            <div class="inside-item">
+                <img src="assets/icons/time{{i}}.jpg"  width="350" height="400">
+                
+            </div>
+            
+            <div class="title-text d-flex justify-content-center">
+                {{item}}
+            </div>
+           
+            <div class="more-info d-flex justify-content-center">
+                <div class="text-box">
+                    <button class="glow-on-hover" 
+                            type="button"
+                            (click)="navigate(i)">
+                        MORE INFO
+                    </button>
+                    <!-- <a href="" class="btn btn-white btn-animate "
+                                (click)="navigate(i)">MORE INFO</a> -->
+                </div>
+            </div>
+        </div>
+
+    </div>
 </div>

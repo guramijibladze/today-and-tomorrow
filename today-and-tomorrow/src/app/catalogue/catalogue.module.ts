@@ -6,6 +6,9 @@ import { OneWeekComponent } from './one-week/one-week.component';
 import { OneMonthComponent } from './one-month/one-month.component';
 import { OneYearComponent } from './one-year/one-year.component';
 import { ThreeYearsLaterComponent } from './three-years-later/three-years-later.component';
+import { RouterModule } from '@angular/router';
+import { CatalogueComponent } from './catalogue.component';
+
 
 
 
@@ -15,9 +18,11 @@ import { ThreeYearsLaterComponent } from './three-years-later/three-years-later.
     OneWeekComponent,
     OneMonthComponent,
     OneYearComponent,
-    ThreeYearsLaterComponent
+    ThreeYearsLaterComponent,
+    CatalogueComponent
   ],
   imports: [
+    RouterModule,
     CommonModule,
     CatalogueRoutingModule
   ]
