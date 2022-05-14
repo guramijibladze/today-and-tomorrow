@@ -10,14 +10,14 @@ export class CatalogueComponent implements OnInit {
   menuBox = ['Plan your day...', 'Plan your week...', 'Plan your month...', 
   'Plan your year...', 'Three-year goals...']
 
-  constructor(private router:Router) { }
+  constructor() { }
 
   ngOnInit(): void {
   }
 
-  navigate(index:number){
-    let ind = String(index)
-    // console.log(typeof ind)
-    // this.router.navigate(['/ind'])
-  }
+  // navigate(){
+   
+  //   // console.log(typeof ind)
+  //   this.router.navigate(['today'])
+  // }
 }
