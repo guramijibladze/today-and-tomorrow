@@ -1,0 +1,52 @@
+
+
+
+    .main{
+        // height: 100%;
+        margin: 25px;
+        padding: 25px;
+    
+        .col1{
+            margin: 15px;
+            height: 1000px;
+            background-color: rgb(234, 219, 159);
+            padding: 0px;
+
+            .header{
+                // width: 100%;
+                padding: 10px;
+                background-color: rgb(247, 213, 80);
+                display: flex;
+                justify-content: space-between;
+                align-items: center!important;
+            }
+
+            .add-icon{
+                .img{
+                    img{
+                        transform: translate(-50%,0);
+                    }
+                }
+            }
+        }
+
+        .col2{
+            margin: 15px;
+            height: 1000px;
+            background-color: rgb(151, 186, 205);
+        }
+
+        .col3{
+            margin: 15px;
+            height: 1000px;
+            background-color: rgb(238, 217, 196);
+        }
+
+        .col4{
+            margin: 15px;
+            height: 1000px;
+            background-color: rgb(205, 241, 206);
+        }
+        
+    }
+
