@@ -8,6 +8,7 @@ import { OneYearComponent } from './one-year/one-year.component';
 import { ThreeYearsLaterComponent } from './three-years-later/three-years-later.component';
 import { RouterModule } from '@angular/router';
 import { CatalogueComponent } from './catalogue.component';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -24,6 +25,7 @@ import { CatalogueComponent } from './catalogue.component';
   imports: [
     RouterModule,
     CommonModule,
+    FormsModule,
     CatalogueRoutingModule
   ]
 })

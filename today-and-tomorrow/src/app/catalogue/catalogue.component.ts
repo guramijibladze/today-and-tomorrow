@@ -15,9 +15,5 @@ export class CatalogueComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  // navigate(){
-   
-  //   // console.log(typeof ind)
-  //   this.router.navigate(['today'])
-  // }
+
 }
