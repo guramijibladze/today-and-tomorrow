@@ -9,6 +9,7 @@ import { ThreeYearsLaterComponent } from './three-years-later/three-years-later.
 import { RouterModule } from '@angular/router';
 import { CatalogueComponent } from './catalogue.component';
 import { FormsModule } from '@angular/forms';
+import { MdbCheckboxModule } from 'mdb-angular-ui-kit/checkbox';
 
 
 
@@ -26,7 +27,8 @@ import { FormsModule } from '@angular/forms';
     RouterModule,
     CommonModule,
     FormsModule,
-    CatalogueRoutingModule
+    CatalogueRoutingModule,
+    MdbCheckboxModule,
   ]
 })
 export class CatalogueModule { }
