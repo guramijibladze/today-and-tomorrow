@@ -16,7 +16,7 @@ export class AuthService {
   constructor(private auth: AngularFireAuth) {
     this.auth.onAuthStateChanged((user) => {
       this.user = user
-      console.log(this.user)
+      // console.log(this.user)
     })
   }
 
