@@ -10,7 +10,10 @@ import { Guid } from 'guid-ts';
   styleUrls: ['./today-page.component.scss']
 })
 export class TodayPageComponent implements OnInit {
- 
+  tasksArr:any = []
+  status:string = '';
+  taskLenth:number = 0;
+
   sendData:any = {
     text:'',
     status: '',
@@ -23,25 +26,15 @@ export class TodayPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAllUsers()
-
-    
-    // this.update()
-    // this.storage.getDb().subscribe( res => {
-    //   console.log(res)
-    // })
-    
   }
 
-  tasksArr:any = []
+ 
   getAllUsers() {
-    let dataId
     this.storage.getDb().subscribe( res => {
       this.tasksArr = res
-      // res.map((i:any) => this.tasksArr.push(i))
-      // let arr:any = []
-      // res.map((i:any) => arr.push(i.text))
-      // dataId = res
-      console.log( this.tasksArr)
+      this.status = res.status
+      this.taskLenth = this.tasksArr.length
+      console.log('status', this.taskLenth)
     })
 
   }
@@ -54,11 +47,10 @@ export class TodayPageComponent implements OnInit {
 
     this.storage.postDb(this.sendData).subscribe( res => {
       console.log(res.id)
-    })
+    });
+
+    this.getAllUsers();
   }
 
-  // update(){
-  //   this.storage.updateDb()
-  // }
 
 }
