@@ -9,28 +9,31 @@
                        New tasks-work request
                     </div>
                     <div class="right">
-                        <img src="assets/icons/checklist-list.svg" alt="">
+                        <img  src="assets/icons/checklist-list.svg" >
                     </div>
                 </div>
 
                 <div class="add-icon d-flex justify-content-center p-2">
                     <div class="tasks w-100 float-left">
-                        <img src="assets/icons/task-64.png" width="50" height="50"> 2
+                        <img src="assets/icons/task-64.png" width="50" height="50"> {{taskLenth}}
                     </div>
                     
-                    <div class="img w-100 float-left"
-                       
-                        data-bs-target="#exampleModal"
-                        data-bs-toggle="modal">
-                        <img src="assets/icons/add-48.png" alt="">
+                    <div class="img w-100 float-left">
+                        <img class="add-tast" 
+                            data-bs-toggle="modal"
+                            data-bs-target="#exampleModal" 
+                            src="assets/icons/add-48.png" alt="">
                     </div>
                 </div>
 
                 <div class="tasks p-3">
                     <div class="task-item m-3 border rounded-3" *ngFor="let item of tasksArr">
                         {{item.text}}
-                        <hr/>
-                        {{item.status}}
+                        <!-- <hr/> -->
+                        <div class="status rounded-pill mt-4"
+                            [ngClass]="{'Prior':item.status == 'Prior!', 'Low':item.status == 'Low',
+                            'Medium':item.status == 'Medium', 'Hard':item.status =='Hard' }">{{item.status}}</div>
+                        
                     </div>
                     
                 </div>
