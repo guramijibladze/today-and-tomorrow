@@ -26,6 +26,9 @@ export class FireApiService {
   }
 
 
+  delete(id:any):Observable<any>{
+    return from(this.db.doc(`task/${id}`).delete()) 
+  }
   // updateDb():Observable<any>{
   //   return from(this.db.collection('task').doc('updateObj').update({
   //     age:30
