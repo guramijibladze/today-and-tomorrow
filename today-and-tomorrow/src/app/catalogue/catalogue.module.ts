@@ -10,7 +10,7 @@ import { RouterModule } from '@angular/router';
 import { CatalogueComponent } from './catalogue.component';
 import { FormsModule } from '@angular/forms';
 import { MdbCheckboxModule } from 'mdb-angular-ui-kit/checkbox';
-
+import {DragDropModule} from '@angular/cdk/drag-drop';
 
 
 
@@ -24,6 +24,7 @@ import { MdbCheckboxModule } from 'mdb-angular-ui-kit/checkbox';
     CatalogueComponent
   ],
   imports: [
+    DragDropModule,
     RouterModule,
     CommonModule,
     FormsModule,
