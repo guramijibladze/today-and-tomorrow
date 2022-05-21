@@ -26,11 +26,11 @@
                     </div>
                 </div>
     
-                <div class="tasks p-3"
+                <div class="tasks-dropList p-3"
                     cdkDropList
-                    #todoList="cdkDropList"
+                    #taskList="cdkDropList"
                     [cdkDropListData]="tasksArr"
-                    [cdkDropListConnectedTo]="[doneList]"
+                    [cdkDropListConnectedTo]="[todoList, progresList , doneList]"
                     (cdkDropListDropped)="drop($event)" >
 
                         <div  cdkDrag class="task-item m-3 border rounded-3" *ngFor="let item of tasksArr">
@@ -52,14 +52,88 @@
                 
             </div>
 
-            <div class="col border rounded-3 col2" 
-                #doneList="cdkDropList" 
-                cdkDropList 
-                [cdkDropListData]="todoArr"
-                [cdkDropListConnectedTo]="[todoList]" 
-                (cdkDropListDropped)="drop($event)">
+            <div class="col border rounded-3 col2">
+
+                <div class="header">
+                    <div class="left">
+                        To Do
+                    </div>
+                    <div class="right">
+                        <img  src="assets/icons/checklist-list.svg" >
+                    </div>
+                </div>
+
+                <div class="add-icon d-flex justify-content-center p-2">
+                    <div class="tasks w-100 float-left">
+                        <img src="assets/icons/task-64.png" width="50" height="50"> {{taskLenth}}
+                    </div>
+                    
+                    <div class="img w-100 float-left">
+                        <img class="add-tast" 
+                            data-bs-toggle="modal"
+                            data-bs-target="#exampleModal" 
+                            src="assets/icons/add-48.png" alt="">
+                    </div>
+                </div>
+
+                <div class="tasks-dropList p-3 " 
+                    #todoList="cdkDropList" 
+                    cdkDropList 
+                    [cdkDropListData]="todoArr"
+                    [cdkDropListConnectedTo]="[taskList, progresList, doneList]" 
+                    (cdkDropListDropped)="drop($event)">
+                
+                        <div class="task-item m-3 border rounded-3" *ngFor="let item of todoArr" cdkDrag>
+                            {{item.text}}
+                            <hr/>
+                            <div class="status mt-4">
+                                <div class="text-status  rounded-pill "
+                                    [ngClass]="{'Prior':item.status == 'Prior!', 'Low':item.status == 'Low',
+                                    'Medium':item.status == 'Medium', 'Hard':item.status =='Hard' }">
+                                    {{item.status}}</div>
+
+                                <div class="delete">
+                                    <img src="assets/icons/delete.svg" width="30" height="30"
+                                        (click)="delete(item)">
+                                </div>
+                            </div>
+                        </div>
+                </div>
+
+            </div>
+
+            <div class="col border rounded-3 col3">
+
+                <div class="header">
+                    <div class="left">
+                        To Do
+                    </div>
+                    <div class="right">
+                        <img  src="assets/icons/checklist-list.svg" >
+                    </div>
+                </div>
+
+                <div class="add-icon d-flex justify-content-center p-2">
+                    <div class="tasks w-100 float-left">
+                        <img src="assets/icons/task-64.png" width="50" height="50"> {{taskLenth}}
+                    </div>
+                    
+                    <div class="img w-100 float-left">
+                        <img class="add-tast" 
+                            data-bs-toggle="modal"
+                            data-bs-target="#exampleModal" 
+                            src="assets/icons/add-48.png" alt="">
+                    </div>
+                </div>
+
+                <div class="tasks-dropList p-3 " 
+                    #progresList="cdkDropList" 
+                    cdkDropList 
+                    [cdkDropListData]="progresArr"
+                    [cdkDropListConnectedTo]="[todoList, taskList, doneList]" 
+                    (cdkDropListDropped)="drop($event)">
                
-                    <div class="task-item m-3 border rounded-3" *ngFor="let item of todoArr" cdkDrag>
+                    <div class="task-item m-3 border rounded-3" *ngFor="let item of progresArr" cdkDrag>
                         {{item.text}}
                         <hr/>
                         <div class="status mt-4">
@@ -74,14 +148,57 @@
                             </div>
                         </div>
                     </div>
-            </div>
-
-            <div class="col border rounded-3 col3">
-                3 of 3
+                </div>
             </div>
 
             <div class="col border rounded-3 col4">
-                4 of 4
+
+                <div class="header">
+                    <div class="left">
+                        To Do
+                    </div>
+                    <div class="right">
+                        <img  src="assets/icons/checklist-list.svg" >
+                    </div>
+                </div>
+
+                <div class="add-icon d-flex justify-content-center p-2">
+                    <div class="tasks w-100 float-left">
+                        <img src="assets/icons/task-64.png" width="50" height="50"> {{taskLenth}}
+                    </div>
+                    
+                    <div class="img w-100 float-left">
+                        <img class="add-tast" 
+                            data-bs-toggle="modal"
+                            data-bs-target="#exampleModal" 
+                            src="assets/icons/add-48.png" alt="">
+                    </div>
+                </div>
+
+                <div class="tasks-dropList p-3 " 
+                    #doneList="cdkDropList" 
+                    cdkDropList 
+                    [cdkDropListData]="doneArr"
+                    [cdkDropListConnectedTo]="[todoList, taskList, progresList]" 
+                    (cdkDropListDropped)="drop($event)">
+               
+                    <div class="task-item m-3 border rounded-3" *ngFor="let item of doneArr" cdkDrag>
+                        {{item.text}}
+                        <hr/>
+                        <div class="status mt-4">
+                            <div class="text-status  rounded-pill "
+                                [ngClass]="{'Prior':item.status == 'Prior!', 'Low':item.status == 'Low',
+                                'Medium':item.status == 'Medium', 'Hard':item.status =='Hard' }">
+                                {{item.status}}</div>
+
+                            <div class="delete">
+                                <img src="assets/icons/delete.svg" width="30" height="30"
+                                    (click)="delete(item)">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
 
         </div>

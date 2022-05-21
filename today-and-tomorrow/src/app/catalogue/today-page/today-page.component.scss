@@ -24,6 +24,12 @@
         font-size: 20px;
         font-family: 'Mukta', sans-serif;
 
+        .tasks-dropList{
+            // background-color: aquamarine;
+            height:100%;
+            width:100%;
+        }
+
         .row{
             width: 70%
         }
@@ -32,7 +38,7 @@
             cursor: pointer;
         }
     
-        .col1{
+        .col1, .col2, .col3, .col4{
             margin: 15px;
             height: 1000px;
             background-color: rgb(234, 219, 159);
@@ -53,24 +59,20 @@
                         transform: translate(-50%,0);
                     }
                 }
+
+                
             }
         }
 
         .col2{
-            margin: 15px;
-            height: 1000px;
-            background-color: rgb(151, 186, 205);
+            background-color: rgb(151, 186, 205);  
         }
 
         .col3{
-            margin: 15px;
-            height: 1000px;
             background-color: rgb(238, 217, 196);
         }
 
         .col4{
-            margin: 15px;
-            height: 1000px;
             background-color: rgb(205, 241, 206);
         }
 
