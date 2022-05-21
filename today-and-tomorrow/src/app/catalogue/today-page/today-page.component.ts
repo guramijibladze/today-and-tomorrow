@@ -11,15 +11,10 @@ import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag
   styleUrls: ['./today-page.component.scss']
 })
 export class TodayPageComponent implements OnInit {
-  tasksArr:any = []
-  todoArr:any = [
-    // { Guid: "c76f0a67-4727-4778-b601-e28b7d31be08",
-    //   status: "Hard",
-    //   text: "გერმანული"},
-    //   { Guid: "12503cbf-5y1a-4cb3-9f7e-f75c7494ff32",
-    //     status: "Low",
-    //     text: "დილით 8 ზე ადგომა"}
-  ]
+  tasksArr:any = [];
+  todoArr:any = [];
+  progresArr:any = [];
+  doneArr:any = [];
 
   status:string = '';
   taskLenth:number = 0;
@@ -42,10 +37,10 @@ export class TodayPageComponent implements OnInit {
     console.log(event, this.todoArr)
     
     if (event.previousContainer === event.container) {
-      console.log('event'),
+      console.log('event1'),
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {
-      console.log('event'),
+      console.log('event2'),
       transferArrayItem(
         event.previousContainer.data,
         event.container.data,
