@@ -2,7 +2,8 @@ import { Component, ElementRef, ViewChild, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { FireApiService } from 'src/app/service/fire-api.service';
 import { Guid } from 'guid-ts';
-import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
+import {CdkDragDrop, copyArrayItem, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
+import { delay, findIndex, from, of, tap } from 'rxjs';
 
 
 @Component({
@@ -22,7 +23,7 @@ export class TodayPageComponent implements OnInit {
   sendData:any = {
     text:'',
     status: '',
-    Guid: ''
+    id: ''
   }
 
   constructor(
@@ -30,54 +31,63 @@ export class TodayPageComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.getAllUsers()
+    this.getTaskArr()
+    this.getprogresArr()
   }
 
   drop(event: CdkDragDrop<string[]>) {
-    console.log(event, this.todoArr)
+    // console.log(this.tasksArr, this.todoArr, this.progresArr, this.doneArr)
+    // console.log(event.previousIndex, 'line', event.currentIndex)
     
     if (event.previousContainer === event.container) {
-      console.log('event1'),
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {
-      console.log('event2'),
+      
+      
       transferArrayItem(
         event.previousContainer.data,
         event.container.data,
         event.previousIndex,
         event.currentIndex,
       );
+
+      let arrmove = event.container
+      console.log( event.previousIndex,)
+      console.log( arrmove)
     }
   }
 
- 
-  getAllUsers() {
-    this.storage.getDb().subscribe( res => {
-      this.tasksArr = res
-      this.status = res.status
-      this.taskLenth = this.tasksArr.length
-      console.log('status', this.tasksArr)
-    })
 
+ 
+  getTaskArr() {
+    this.storage.getDbJosonTaskArr().subscribe( res => {
+      this.tasksArr = res
+      // console.log(res)
+    })
   }
 
+  getprogresArr() {
+    this.storage.getDbJsonProgresArr().subscribe( res => {
+      this.progresArr = res
+      // console.log(res)
+    })
+  }
 
   saveTask(){
     const newGuid = Guid.newGuid().toString();
-    this.sendData.Guid = newGuid
-    console.log(this.sendData)
+    this.sendData.id = newGuid
+    // console.log(this.sendData)
 
-    this.storage.postDb(this.sendData).subscribe( res => {
-      console.log(res.id)
+    this.storage.postTask(this.sendData).subscribe( res => {
+      // console.log(res)
+      this.getTaskArr()
     });
 
-    this.getAllUsers();
   }
 
   delete(item:any){
-    let id = 'zTy6n23AfGNhB8S1aenA'
-    console.log(id)
-    this.storage.delete(id).subscribe()
+    this.storage.deleteTask(item.id, item).subscribe()
+    // console.log(item)
   }
 
 }
