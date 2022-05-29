@@ -1,6 +1,7 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { from, map, Observable } from 'rxjs';
+import { delay, from, map, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -8,30 +9,26 @@ import { from, map, Observable } from 'rxjs';
 export class FireApiService {
 
   constructor(
-    private db:AngularFirestore
+    private db:AngularFirestore,
+    private http: HttpClient
   ) { }
 
-  postDb(data:any):Observable<any>{
-    return from(this.db.collection('task').add(data))
+  getDbJosonTaskArr():Observable<any>{
+    return this.http.get('http://localhost:3000/taskArr')
   }
 
-  getDb():Observable<any>{
-    // return this.db.collection('task').get().pipe(
-    //   map(el => el.docs.map(res => res.id))
-    // );
-    return this.db.collection('task').get().pipe(
-      map((res) => res.docs.map((d) => d.data()))
+  getDbJsonProgresArr(){
+    return this.http.get('http://localhost:3000/progresArr')
+  }
+
+  postTask(object:any):Observable<any>{
+    return this.http.post('http://localhost:3000/taskArr', object).pipe(
+      delay(500)
     )
-
   }
 
-
-  delete(id:any):Observable<any>{
-    return from(this.db.doc(`task/${id}`).delete()) 
+  deleteTask(id:number, object:any):Observable<any>{
+    return this.http.delete(`http://localhost:3000/taskArr/${id}`, object)
   }
-  // updateDb():Observable<any>{
-  //   return from(this.db.collection('task').doc('updateObj').update({
-  //     age:30
-  //   }))
-  // }
+
 }

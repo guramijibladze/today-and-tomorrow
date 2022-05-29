@@ -1,0 +1,33 @@
+{
+  "taskArr": [
+    {
+      "text": "task2",
+      "status": "Hard",
+      "id": "e1c25877-57e0-4691-b6fb-e80eb60c1705"
+    },
+    {
+      "text": "task3",
+      "status": "Hard",
+      "id": "9e618c35-9f87-432f-a430-f73592245f28"
+    },
+    {
+      "text": "task1",
+      "status": "Prior!",
+      "id": "556474f4-1eaf-4349-8403-ba29fc31ccfc"
+    }
+  ],
+  "todoArr": [],
+  "progresArr": [
+    {
+      "status": "Low",
+      "text": "ჭურჭლის რეცხვა",
+      "id": "e1c26879-57e0-4691-b6fb-e80eb60c1705"
+    },
+    {
+      "status": "Low",
+      "text": "პედიგრის ყიდვა",
+      "id": "e1c25877-57e0-4691-b6fb-e80eb60c1702"
+    }
+  ],
+  "doneArr": []
+}

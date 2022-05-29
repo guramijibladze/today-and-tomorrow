@@ -15,7 +15,7 @@
 
                 <div class="add-icon d-flex justify-content-center p-2">
                     <div class="tasks w-100 float-left">
-                        <img src="assets/icons/task-64.png" width="50" height="50"> {{taskLenth}}
+                        <img src="assets/icons/task-64.png" width="50" height="50"> {{tasksArr.length}}
                     </div>
                     
                     <div class="img w-100 float-left">
@@ -34,7 +34,7 @@
                     (cdkDropListDropped)="drop($event)" >
 
                         <div  cdkDrag class="task-item m-3 border rounded-3" *ngFor="let item of tasksArr">
-                            {{item.text}}
+                            <div class="text">{{item.text}}</div>
                             <hr/>
                             <div class="status mt-4">
                                 <div class="text-status  rounded-pill "
@@ -65,7 +65,7 @@
 
                 <div class="add-icon d-flex justify-content-center p-2">
                     <div class="tasks w-100 float-left">
-                        <img src="assets/icons/task-64.png" width="50" height="50"> {{taskLenth}}
+                        <img src="assets/icons/task-64.png" width="50" height="50"> {{todoArr.length}}
                     </div>
                     
                     <div class="img w-100 float-left">
@@ -84,7 +84,7 @@
                     (cdkDropListDropped)="drop($event)">
                 
                         <div class="task-item m-3 border rounded-3" *ngFor="let item of todoArr" cdkDrag>
-                            {{item.text}}
+                            <div class="text">{{item.text}}</div>
                             <hr/>
                             <div class="status mt-4">
                                 <div class="text-status  rounded-pill "
@@ -115,7 +115,7 @@
 
                 <div class="add-icon d-flex justify-content-center p-2">
                     <div class="tasks w-100 float-left">
-                        <img src="assets/icons/task-64.png" width="50" height="50"> {{taskLenth}}
+                        <img src="assets/icons/task-64.png" width="50" height="50"> {{progresArr.length}}
                     </div>
                     
                     <div class="img w-100 float-left">
@@ -134,7 +134,7 @@
                     (cdkDropListDropped)="drop($event)">
                
                     <div class="task-item m-3 border rounded-3" *ngFor="let item of progresArr" cdkDrag>
-                        {{item.text}}
+                        <div class="text">{{item.text}}</div>
                         <hr/>
                         <div class="status mt-4">
                             <div class="text-status  rounded-pill "
@@ -164,7 +164,7 @@
 
                 <div class="add-icon d-flex justify-content-center p-2">
                     <div class="tasks w-100 float-left">
-                        <img src="assets/icons/task-64.png" width="50" height="50"> {{taskLenth}}
+                        <img src="assets/icons/task-64.png" width="50" height="50"> {{doneArr.length}}
                     </div>
                     
                     <div class="img w-100 float-left">
@@ -183,7 +183,7 @@
                     (cdkDropListDropped)="drop($event)">
                
                     <div class="task-item m-3 border rounded-3" *ngFor="let item of doneArr" cdkDrag>
-                        {{item.text}}
+                        <div class="text">{{item.text}}</div>
                         <hr/>
                         <div class="status mt-4">
                             <div class="text-status  rounded-pill "
