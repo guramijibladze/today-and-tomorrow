@@ -17,15 +17,16 @@ export class FireApiService {
     return this.http.get('http://localhost:3000/taskArr')
   }
 
-  getDbJsonProgresArr(){
-    return this.http.get('http://localhost:3000/progresArr')
-  }
 
   postTask(object:any):Observable<any>{
     return this.http.post('http://localhost:3000/taskArr', object).pipe(
       delay(500)
     )
   }
+
+  // putObj(status:any, guId:any):Observable<any>{
+  //   return this.http.put(`http://localhost:3000/taskArr/${guId}`, object)
+  // }
 
   deleteTask(id:number, object:any):Observable<any>{
     return this.http.delete(`http://localhost:3000/taskArr/${id}`, object)

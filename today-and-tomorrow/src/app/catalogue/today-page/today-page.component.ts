@@ -3,8 +3,14 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { FireApiService } from 'src/app/service/fire-api.service';
 import { Guid } from 'guid-ts';
 import {CdkDragDrop, copyArrayItem, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
-import { delay, findIndex, from, of, tap } from 'rxjs';
 
+
+interface Task {
+  text: string
+  status: string,
+  level: string,
+  id: string
+}
 
 @Component({
   selector: 'app-today-page',
@@ -12,9 +18,8 @@ import { delay, findIndex, from, of, tap } from 'rxjs';
   styleUrls: ['./today-page.component.scss']
 })
 export class TodayPageComponent implements OnInit {
-  tasksArr:any = [];
-  todoArr:any = [];
-  progresArr:any = [];
+  todoArr:Task[] = [];
+  progresArr:Task[] = [];
   doneArr:any = [];
 
   status:string = '';
@@ -32,18 +37,18 @@ export class TodayPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.getTaskArr()
-    this.getprogresArr()
   }
 
-  drop(event: CdkDragDrop<string[]>) {
-    // console.log(this.tasksArr, this.todoArr, this.progresArr, this.doneArr)
-    // console.log(event.previousIndex, 'line', event.currentIndex)
-    
+  dropObject:Object[] = []
+  drop(event: CdkDragDrop<Task[]>) {    
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {
-      
-      
+      this.dropObject = []
+
+      let arrName = event.container.id
+      let guId = event.previousContainer.data[event.previousIndex].id
+
       transferArrayItem(
         event.previousContainer.data,
         event.container.data,
@@ -51,27 +56,44 @@ export class TodayPageComponent implements OnInit {
         event.currentIndex,
       );
 
-      let arrmove = event.container
-      console.log( event.previousIndex,)
-      console.log( arrmove)
+      this.dropObject = event.container.data
+      this.moveItemInArray(arrName, guId)
+
     }
   }
 
+  moveItemInArray(arrName:string, guId:string){
+    // console.log('done' == arrName)
+    switch(arrName){
+      case 'todo':
+        this.putObj('todo',guId)
+        break;
+      case 'progress':
+        this.putObj('progress',guId)
+        break;
+      case 'done':
+        this.putObj('done',guId)
+        break;
+    }
+  }
 
+  putObj(status:string,guId:string){
+    let putObj = this.dropObject[0];
+    console.log(typeof putObj)
+    // this.storage.putObj(status,guId).subscribe()
+  }
  
   getTaskArr() {
     this.storage.getDbJosonTaskArr().subscribe( res => {
-      this.tasksArr = res
-      // console.log(res)
+      this.todoArr = res.filter((item:Task) => item.status == 'todo')
+      this.progresArr = res.filter((item:Task) => item.status == 'progres')
+      // this.todoArr = res.filter((item:Task) => item.status == 'todo')
+      
+      // console.log(this.todoArr)
     })
+    
   }
 
-  getprogresArr() {
-    this.storage.getDbJsonProgresArr().subscribe( res => {
-      this.progresArr = res
-      // console.log(res)
-    })
-  }
 
   saveTask(){
     const newGuid = Guid.newGuid().toString();
