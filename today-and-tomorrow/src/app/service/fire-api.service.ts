@@ -9,26 +9,26 @@ import { delay, from, map, Observable } from 'rxjs';
 export class FireApiService {
 
   constructor(
-    private db:AngularFirestore,
+    private db: AngularFirestore,
     private http: HttpClient
   ) { }
 
-  getDbJosonTaskArr():Observable<any>{
+  getDbJosonTaskArr(): Observable<any> {
     return this.http.get('http://localhost:3000/taskArr')
   }
 
 
-  postTask(object:any):Observable<any>{
+  postTask(object: any): Observable<any> {
     return this.http.post('http://localhost:3000/taskArr', object).pipe(
       delay(500)
     )
   }
 
-  // putObj(status:any, guId:any):Observable<any>{
-  //   return this.http.put(`http://localhost:3000/taskArr/${guId}`, object)
-  // }
+  putObj(guId: any, object: any): Observable<any> {
+    return this.http.put(`http://localhost:3000/taskArr/${guId}`, object)
+  }
 
-  deleteTask(id:number, object:any):Observable<any>{
+  deleteTask(id: number, object: any): Observable<any> {
     return this.http.delete(`http://localhost:3000/taskArr/${id}`, object)
   }
 
