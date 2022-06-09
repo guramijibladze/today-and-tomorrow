@@ -2,25 +2,19 @@
   "taskArr": [
     {
       "text": "task2",
-      "status": "todo",
+      "status": "done",
       "level": "Hard",
       "id": "e1c25877-57e0-4691-b6fb-e80eb60c1705"
     },
     {
-      "text": "task3",
-      "status": "progres",
-      "level": "Low",
-      "id": "9e618c35-9f87-432f-a430-f73592245f28"
-    },
-    {
       "text": "task1",
-      "status": "done",
+      "status": "todo",
       "level": "Hard",
       "id": "556474f4-1eaf-4349-8403-ba29fc31ccfc"
     },
     {
       "text": "task3",
-      "status": "todo",
+      "status": "progress",
       "level": "Hard",
       "id": "e1c25877-57e6-4691-b6fb-e80eb60c1708"
     }
