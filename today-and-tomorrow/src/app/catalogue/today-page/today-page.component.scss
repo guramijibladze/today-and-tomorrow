@@ -25,6 +25,8 @@
         font-family: 'Mukta', sans-serif;
 
         .delete{
+            display: flex;
+            flex-direction: column;
             cursor: pointer;
         }
 
@@ -83,7 +85,7 @@
         .task-item{
             background-color: white;
             padding: 10px;
-            height: 120px;
+            height: 150px;
             cursor: move;
             box-sizing: border-box;
 
@@ -98,7 +100,7 @@
                 justify-content: space-between;
                 align-items: center;
 
-                .text-status{
+                .text-status, .level-status{
                     text-align: center;
                     width: 80px;
                     background-color: rgb(228, 228, 228);
