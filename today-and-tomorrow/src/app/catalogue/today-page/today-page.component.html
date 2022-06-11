@@ -1,193 +1,192 @@
+<div class="main card">
+    <div class="row ">
 
+        <div class="col border rounded-3 col2">
 
-    <div class="main card">
-        <div class="row ">
-            
-            <div class="col border rounded-3 col2">
-
-                <div class="header">
-                    <div class="left">
-                        To Do
-                    </div>
-                    <div class="right">
-                        <img  src="assets/icons/checklist-list.svg" >
-                    </div>
+            <div class="header">
+                <div class="left">
+                    To Do
                 </div>
-
-                <div class="add-icon d-flex justify-content-center p-2">
-                    <div class="tasks w-100 float-left">
-                        <img src="assets/icons/task-64.png" width="50" height="50"> {{todoArr.length}}
-                    </div>
-                    
-                    <div class="img w-100 float-left">
-                        <img class="add-tast" 
-                            data-bs-toggle="modal"
-                            data-bs-target="#exampleModal" 
-                            src="assets/icons/add-48.png" alt="">
-                    </div>
+                <div class="right">
+                    <img src="assets/icons/checklist-list.svg">
                 </div>
-
-                <div class="tasks-dropList p-3 " 
-                    #todoList="cdkDropList" 
-                    cdkDropList 
-                    id="todo"
-                    [cdkDropListData]="todoArr"
-                    [cdkDropListConnectedTo]="[progresList, doneList]" 
-                    (cdkDropListDropped)="drop($event)">
-                
-                        <div class="task-item m-3 border rounded-3" *ngFor="let item of todoArr" cdkDrag>
-                            <div class="text">{{item.text}}</div>
-                            <hr/>
-                            <div class="status mt-4">
-                                <div class="text-status  rounded-pill "
-                                    [ngClass]="{'Prior':item.status == 'Prior!', 'Low':item.status == 'Low',
-                                    'Medium':item.status == 'Medium', 'Hard':item.status =='Hard' }">
-                                    {{item.status}}</div>
-
-                                <div class="delete">
-                                    <img src="assets/icons/delete.svg" width="30" height="30"
-                                        (click)="delete(item)">
-                                </div>
-                            </div>
-                        </div>
-                </div>
-
             </div>
 
-            <div class="col border rounded-3 col3">
-
-                <div class="header">
-                    <div class="left">
-                        Progress
-                    </div>
-                    <div class="right">
-                        <img  src="assets/icons/checklist-list.svg" >
-                    </div>
+            <div class="add-icon d-flex justify-content-center p-2">
+                <div class="tasks w-100 float-left">
+                    <img src="assets/icons/task-64.png" width="50" height="50"> {{todoArr.length}}
                 </div>
 
-                <div class="add-icon d-flex justify-content-center p-2">
-                    <div class="tasks w-100 float-left">
-                        <img src="assets/icons/task-64.png" width="50" height="50"> {{progresArr.length}}
-                    </div>
-                    
-                    <div class="img w-100 float-left">
-                        <img class="add-tast" 
-                            data-bs-toggle="modal"
-                            data-bs-target="#exampleModal" 
-                            src="assets/icons/add-48.png" alt="">
-                    </div>
+                <div class="img w-100 float-left">
+                    <img class="add-tast" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                        src="assets/icons/add-48.png" alt="">
                 </div>
+            </div>
 
-                <div class="tasks-dropList p-3 " 
-                    #progresList="cdkDropList" 
-                    cdkDropList 
-                    id="progress"
-                    [cdkDropListData]="progresArr"
-                    [cdkDropListConnectedTo]="[todoList, doneList]" 
-                    (cdkDropListDropped)="drop($event)">
-               
-                    <div class="task-item m-3 border rounded-3" *ngFor="let item of progresArr" cdkDrag>
-                        <div class="text">{{item.text}}</div>
-                        <hr/>
-                        <div class="status mt-4">
-                            <div class="text-status  rounded-pill "
-                                [ngClass]="{'Prior':item.status == 'Prior!', 'Low':item.status == 'Low',
-                                'Medium':item.status == 'Medium', 'Hard':item.status =='Hard' }">
+            <div class="tasks-dropList p-3 " #todoList="cdkDropList" cdkDropList id="todo" [cdkDropListData]="todoArr"
+                [cdkDropListConnectedTo]="[progresList, doneList]" (cdkDropListDropped)="drop($event)">
+
+                <div class="task-item m-3 border rounded-3" *ngFor="let item of todoArr" cdkDrag>
+                    <div class="form-floating">
+                        <textarea class="form-control" (blur)="saveText($event, item)">{{item.text}}</textarea>
+                    </div>
+
+                    <div class="status mt-4">
+                        <div class="status-level">
+                            <div class="level-status m-1  rounded-pill" [ngClass]="{'Prior':item.level == 'Prior!', 'Low':item.level == 'Low',
+                                        'Medium':item.level == 'Medium', 'Hard':item.level =='Hard' }">
+                                {{item.level}}
+                            </div>
+
+                            <div class="text-status m-1 rounded-pill ">
                                 {{item.status}}</div>
+                        </div>
 
-                            <div class="delete">
-                                <img src="assets/icons/delete.svg" width="30" height="30"
-                                    (click)="delete(item)">
+
+                        <div class="delete">
+                            <div class=" text-center">
+                                <img src="assets/icons/edit24.svg" width="22" height="22" (click)="delete(item)">
+                            </div>
+                            <div>
+                                <img src="assets/icons/delete.svg" width="30" height="30" (click)="delete(item)">
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="col border rounded-3 col4">
+        </div>
 
-                <div class="header">
-                    <div class="left">
-                        Done
-                    </div>
-                    <div class="right">
-                        <img  src="assets/icons/checklist-list.svg" >
-                    </div>
+        <div class="col border rounded-3 col3">
+
+            <div class="header">
+                <div class="left">
+                    Progress
+                </div>
+                <div class="right">
+                    <img src="assets/icons/checklist-list.svg">
+                </div>
+            </div>
+
+            <div class="add-icon d-flex justify-content-center p-2">
+                <div class="tasks w-100 float-left">
+                    <img src="assets/icons/task-64.png" width="50" height="50"> {{progresArr.length}}
                 </div>
 
-                <div class="add-icon d-flex justify-content-center p-2">
-                    <div class="tasks w-100 float-left">
-                        <img src="assets/icons/task-64.png" width="50" height="50"> {{doneArr.length}}
-                    </div>
-                    
-                    <div class="img w-100 float-left">
-                        <img class="add-tast" 
-                            data-bs-toggle="modal"
-                            data-bs-target="#exampleModal" 
-                            src="assets/icons/add-48.png" alt="">
-                    </div>
-                </div>
+            </div>
 
-                <div class="tasks-dropList p-3 " 
-                    #doneList="cdkDropList" 
-                    cdkDropList
-                    id="done"
-                    [cdkDropListData]="doneArr"
-                    [cdkDropListConnectedTo]="[todoList, progresList]" 
-                    (cdkDropListDropped)="drop($event)">
-               
-                    <div class="task-item m-3 border rounded-3" *ngFor="let item of doneArr" cdkDrag>
-                        <div class="text">{{item.text}}</div>
-                        <hr/>
-                        <div class="status mt-4">
-                            <div class="text-status  rounded-pill "
-                                [ngClass]="{'Prior':item.status == 'Prior!', 'Low':item.status == 'Low',
-                                'Medium':item.status == 'Medium', 'Hard':item.status =='Hard' }">
+            <div class="tasks-dropList p-3 " #progresList="cdkDropList" cdkDropList id="progress"
+                [cdkDropListData]="progresArr" [cdkDropListConnectedTo]="[todoList, doneList]"
+                (cdkDropListDropped)="drop($event)">
+
+                <div class="task-item m-3 border rounded-3" *ngFor="let item of progresArr" cdkDrag>
+                    <div class="form-floating">
+                        <textarea class="form-control" (blur)="saveText($event, item)">{{item.text}}</textarea>
+                    </div>
+
+                    <div class="status mt-4">
+                        <div class="status-level">
+                            <div class="level-status m-1  rounded-pill" [ngClass]="{'Prior':item.level == 'Prior!', 'Low':item.level == 'Low',
+                                    'Medium':item.level == 'Medium', 'Hard':item.level =='Hard' }">
+                                {{item.level}}
+                            </div>
+
+                            <div class="text-status m-1 rounded-pill ">
                                 {{item.status}}</div>
+                        </div>
 
-                            <div class="delete">
-                                <img src="assets/icons/delete.svg" width="30" height="30"
-                                    (click)="delete(item)">
+                        <div class="delete">
+                            <div class=" text-center">
+                                <img src="assets/icons/edit24.svg" width="22" height="22" (click)="delete(item)">
+                            </div>
+                            <div>
+                                <img src="assets/icons/delete.svg" width="30" height="30" (click)="delete(item)">
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+
+        <div class="col border rounded-3 col4">
+
+            <div class="header">
+                <div class="left">
+                    Done
+                </div>
+                <div class="right">
+                    <img src="assets/icons/checklist-list.svg">
+                </div>
+            </div>
+
+            <div class="add-icon d-flex justify-content-center p-2">
+                <div class="tasks w-100 float-left">
+                    <img src="assets/icons/task-64.png" width="50" height="50"> {{doneArr.length}}
+                </div>
 
             </div>
 
-        </div>
-    </div>
+            <div class="tasks-dropList p-3 " #doneList="cdkDropList" cdkDropList id="done" [cdkDropListData]="doneArr"
+                [cdkDropListConnectedTo]="[todoList, progresList]" (cdkDropListDropped)="drop($event)">
 
-<!-- Modal -->
-<div class="modal fade" 
-    id="exampleModal" 
-    aria-hidden="true" >
-    
-    <div class="modal-dialog modal-lg modal-dialog-centered" >
-      <div class="modal-content" >
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <div class="task-item m-3 border rounded-3" *ngFor="let item of doneArr" cdkDrag>
+                    <div class="form-floating">
+                        <textarea class="form-control" (blur)="saveText($event, item)">{{item.text}}</textarea>
+                    </div>
+
+                    <div class="status mt-4">
+                        <div class="status-level">
+                            <div class="level-status m-1  rounded-pill" [ngClass]="{'Prior':item.level == 'Prior!', 'Low':item.level == 'Low',
+                                    'Medium':item.level == 'Medium', 'Hard':item.level =='Hard' }">
+                                {{item.level}}
+                            </div>
+
+                            <div class="text-status m-1 rounded-pill ">
+                                {{item.status}}</div>
+                        </div>
+
+                        <div class="delete">
+                            <div class=" text-center">
+                                <img src="assets/icons/edit24.svg" width="22" height="22" (click)="delete(item)">
+                            </div>
+                            <div>
+                                <img src="assets/icons/delete.svg" width="30" height="30" (click)="delete(item)">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
-        <div class="modal-body input-group input-group-lg d-flex flex-column">
-          <input type="text" class="form-control w-100" [(ngModel)]="sendData.text">
-          <select class="form-select mt-2 w-100" 
-                    aria-label="Default select example"
-                    [(ngModel)]="sendData.status">
-            <option value="Prior!">Prior!</option>
-            <option value="Low">Low</option>
-            <option value="Medium">Medium</option>
-            <option value="Hard">Hard</option>
-          </select>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" 
-                data-bs-dismiss="modal"
-                class="btn btn-primary" 
-                (click)="saveTask()">Save changes</button>
-        </div>
-      </div>
+
     </div>
 </div>
 
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" aria-hidden="true">
 
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+            </div>
+            <form (ngSubmit)="saveTask()" #f="ngForm">
+                <div class="modal-body input-group input-group-lg d-flex flex-column">
+                    <input type="text" class="form-control w-100" name="text" [(ngModel)]="sendData.text">
+                    <select class="form-select mt-2 w-100" aria-label="Default select example" name="level"
+                        [(ngModel)]="sendData.level">
+                        <option value="Prior!">Prior!</option>
+                        <option value="Low">Low</option>
+                        <option value="Medium">Medium</option>
+                        <option value="Hard">Hard</option>
+                    </select>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" data-bs-dismiss="modal" class="btn btn-primary">Save changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

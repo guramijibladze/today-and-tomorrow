@@ -3,14 +3,10 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { FireApiService } from 'src/app/service/fire-api.service';
 import { Guid } from 'guid-ts';
 import { CdkDragDrop, copyArrayItem, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
+import { Status, Task } from '../catalogue.model';
+import { interval, of, timeInterval, timeout } from 'rxjs';
+import { NgForm } from '@angular/forms';
 
-
-interface Task {
-  text: string
-  status: string,
-  level: string,
-  id: string
-}
 
 @Component({
   selector: 'app-today-page',
@@ -18,9 +14,11 @@ interface Task {
   styleUrls: ['./today-page.component.scss']
 })
 export class TodayPageComponent implements OnInit {
+  @ViewChild('f') signupForm!: NgForm;
+
   todoArr: Task[] = [];
   progresArr: Task[] = [];
-  doneArr: any = [];
+  doneArr: Task[] = [];
 
   status: string = '';
   taskLenth: number = 0;
@@ -28,6 +26,7 @@ export class TodayPageComponent implements OnInit {
   sendData: any = {
     text: '',
     status: '',
+    level: '',
     id: ''
   }
 
@@ -67,20 +66,20 @@ export class TodayPageComponent implements OnInit {
   moveItemInArray(arrName: string, guId: string, currentObj: any) {
     // console.log('done' == arrName)
     switch (arrName) {
-      case 'todo':
-        this.putObj('todo', guId, currentObj)
+      case Status.Todo:
+        this.putObj(guId, currentObj, 'todo')
         break;
-      case 'progress':
-        this.putObj('progress', guId, currentObj)
+      case Status.Progress:
+        this.putObj(guId, currentObj, 'progress')
         break;
-      case 'done':
-        this.putObj('done', guId, currentObj)
+      case Status.Done:
+        this.putObj(guId, currentObj, 'done')
         break;
     }
   }
 
-  putObj(status: string, guId: string, currentObj: any) {
-    currentObj.status = status
+  putObj(guId: string, currentObj: Task, status?: string) {
+    status ? currentObj.status = status : ''
 
     this.storage.putObj(guId, currentObj).subscribe(res => {
       console.log(res)
@@ -91,9 +90,9 @@ export class TodayPageComponent implements OnInit {
 
   getTaskArr() {
     this.storage.getDbJosonTaskArr().subscribe(res => {
-      this.todoArr = res.filter((item: Task) => item.status == 'todo')
-      this.progresArr = res.filter((item: Task) => item.status == 'progress')
-      this.doneArr = res.filter((item: Task) => item.status == 'done')
+      this.todoArr = res.filter((item: Task) => item.status == Status.Todo)
+      this.progresArr = res.filter((item: Task) => item.status == Status.Progress)
+      this.doneArr = res.filter((item: Task) => item.status == Status.Done)
 
       // console.log(this.todoArr)
     })
@@ -104,18 +103,30 @@ export class TodayPageComponent implements OnInit {
   saveTask() {
     const newGuid = Guid.newGuid().toString();
     this.sendData.id = newGuid
-    // console.log(this.sendData)
+    this.sendData.status = 'todo'
 
     this.storage.postTask(this.sendData).subscribe(res => {
       // console.log(res)
-      this.getTaskArr()
+      this.getTaskArr();
+      this.signupForm.reset();
     });
 
   }
 
   delete(item: any) {
-    this.storage.deleteTask(item.id, item).subscribe()
-    // console.log(item)
+    this.storage.deleteTask(item.id, item).subscribe(res => {
+      this.getTaskArr();
+    })
+
+  }
+
+
+  saveText(event: Event, currentObj: any) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    let guId = currentObj.id
+    currentObj.text = filterValue
+
+    this.putObj(guId, currentObj)
   }
 
 }
