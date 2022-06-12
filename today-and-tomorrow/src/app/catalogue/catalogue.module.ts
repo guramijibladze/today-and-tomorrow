@@ -10,7 +10,8 @@ import { RouterModule } from '@angular/router';
 import { CatalogueComponent } from './catalogue.component';
 import { FormsModule } from '@angular/forms';
 import { MdbCheckboxModule } from 'mdb-angular-ui-kit/checkbox';
-import {DragDropModule} from '@angular/cdk/drag-drop';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+import { DatePipe } from '@angular/common'
 
 
 
@@ -30,6 +31,8 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
     FormsModule,
     CatalogueRoutingModule,
     MdbCheckboxModule,
-  ]
+
+  ],
+  providers: [DatePipe]
 })
 export class CatalogueModule { }

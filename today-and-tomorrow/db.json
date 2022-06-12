@@ -1,22 +1,17 @@
 {
   "taskArr": [
     {
-      "text": "კბილების გამოხეხვა",
-      "status": "done",
-      "level": "Low",
-      "id": "d2149292-a635-4f56-b0f1-2aef56ae90ca"
-    },
-    {
-      "text": "ტუალეტში მდუღარე წყლის მისხმა",
-      "status": "done",
-      "level": "Low",
-      "id": "6a913040-f994-4372-8f36-a9065d0327d9"
-    },
-    {
       "text": "დროშის მოტანა, საბურთალოზე გასვლა",
       "status": "todo",
       "level": "Medium",
       "id": "973c8638-f9ab-43a4-aa89-e6144796ca99"
+    },
+    {
+      "text": "პედიგრის ყიდვა",
+      "status": "done",
+      "level": "Medium",
+      "id": "be4a631c-de81-4a18-88ef-6bf6573f46fc",
+      "date": "12"
     }
   ]
 }
