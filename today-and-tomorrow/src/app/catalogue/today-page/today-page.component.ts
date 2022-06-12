@@ -2,10 +2,10 @@ import { Component, ElementRef, ViewChild, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { FireApiService } from 'src/app/service/fire-api.service';
 import { Guid } from 'guid-ts';
-import { CdkDragDrop, copyArrayItem, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
+import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { Status, Task } from '../catalogue.model';
-import { interval, of, timeInterval, timeout } from 'rxjs';
 import { NgForm } from '@angular/forms';
+import { DatePipe } from '@angular/common';
 
 
 @Component({
@@ -27,15 +27,16 @@ export class TodayPageComponent implements OnInit {
     text: '',
     status: '',
     level: 'Low',
-    id: ''
+    id: '',
+    date: ''
   }
 
   constructor(
-    private storage: FireApiService
+    private storage: FireApiService,
+    public datepipe: DatePipe
   ) { }
 
   ngOnInit(): void {
-
     this.getTaskArr()
   }
 
@@ -79,24 +80,49 @@ export class TodayPageComponent implements OnInit {
     }
   }
 
+
   putObj(guId: string, currentObj: Task, status?: string) {
+    let date = new Date()
+    let parseDate = this.datepipe.transform(date, 'dd')
+    let strDate = String(parseDate)
+
+
     status ? currentObj.status = status : ''
+    status == Status.Done ? currentObj.date = strDate : ''
 
     this.storage.putObj(guId, currentObj).subscribe(res => {
-      console.log(res)
+      // console.log(res)
     })
+
+
   }
 
 
 
   getTaskArr() {
+    let date = new Date()
+    let parseDate = this.datepipe.transform(date, 'dd')
+    let strDate = String(parseDate)
+    let done = []
+    let removeDoneArr: any = []
+
     this.storage.getDbJosonTaskArr().subscribe(res => {
       this.todoArr = res.filter((item: Task) => item.status == Status.Todo)
       this.progresArr = res.filter((item: Task) => item.status == Status.Progress)
-      this.doneArr = res.filter((item: Task) => item.status == Status.Done)
+      done = res.filter((item: Task) => item.status == Status.Done)
+      let filterArr = done.filter((item: Task) => item.date == strDate)
+      removeDoneArr = done.filter((item: Task) => item.date != strDate)
+      this.doneArr = filterArr
+      console.log(removeDoneArr)
 
-      // console.log(this.todoArr)
+      if (removeDoneArr.length > 0) {
+
+        for (let i = 0; i < removeDoneArr.length; i++) {
+          this.delete(removeDoneArr[i])
+        }
+      }
     })
+
 
   }
 
