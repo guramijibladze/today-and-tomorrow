@@ -1,34 +1,22 @@
 {
   "taskArr": [
     {
-      "text": "task2",
-      "status": "progress",
-      "level": "Hard",
-      "id": "e1c25877-57e0-4691-b6fb-e80eb60c1705"
-    },
-    {
-      "text": "task3 test",
+      "text": "კბილების გამოხეხვა",
       "status": "done",
-      "level": "Hard",
-      "id": "e1c25877-57e6-4691-b6fb-e80eb60c1708"
+      "level": "Low",
+      "id": "d2149292-a635-4f56-b0f1-2aef56ae90ca"
     },
     {
-      "text": "task1 ",
-      "status": "todo",
-      "level": "Prior!",
-      "id": "05094a05-2be7-445c-ae26-f60152cdd4ce"
+      "text": "ტუალეტში მდუღარე წყლის მისხმა",
+      "status": "done",
+      "level": "Low",
+      "id": "6a913040-f994-4372-8f36-a9065d0327d9"
     },
     {
-      "text": "task4",
-      "status": "todo",
-      "level": "Medium",
-      "id": "a0e01dbf-875a-4a76-a093-7af58b748176"
-    },
-    {
-      "text": "task 6",
+      "text": "დროშის მოტანა, საბურთალოზე გასვლა",
       "status": "todo",
       "level": "Medium",
-      "id": "d3a8d838-c961-4b4c-a01e-60a061a0237b"
+      "id": "973c8638-f9ab-43a4-aa89-e6144796ca99"
     }
   ]
 }

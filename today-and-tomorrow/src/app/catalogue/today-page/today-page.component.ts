@@ -26,7 +26,7 @@ export class TodayPageComponent implements OnInit {
   sendData: any = {
     text: '',
     status: '',
-    level: '',
+    level: 'Low',
     id: ''
   }
 
@@ -35,6 +35,7 @@ export class TodayPageComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+
     this.getTaskArr()
   }
 
@@ -109,6 +110,7 @@ export class TodayPageComponent implements OnInit {
       // console.log(res)
       this.getTaskArr();
       this.signupForm.reset();
+      this.sendData.level = 'Low'
     });
 
   }
