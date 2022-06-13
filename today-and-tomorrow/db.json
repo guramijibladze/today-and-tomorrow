@@ -1,17 +1,11 @@
 {
   "taskArr": [
     {
-      "text": "დროშის მოტანა, საბურთალოზე გასვლა",
+      "text": "task1",
       "status": "todo",
-      "level": "Medium",
-      "id": "973c8638-f9ab-43a4-aa89-e6144796ca99"
-    },
-    {
-      "text": "პედიგრის ყიდვა",
-      "status": "done",
-      "level": "Medium",
-      "id": "be4a631c-de81-4a18-88ef-6bf6573f46fc",
-      "date": "12"
+      "level": "Low",
+      "id": "95060af3-2863-4a4a-9917-9c873c1b5d9e",
+      "date": ""
     }
   ]
 }

@@ -169,11 +169,12 @@
     <div class="modal-dialog modal-lg modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <h5 class="modal-title" id="exampleModalLabel">task name</h5>
             </div>
             <form (ngSubmit)="saveTask()" #f="ngForm">
                 <div class="modal-body input-group input-group-lg d-flex flex-column">
-                    <input type="text" class="form-control w-100" name="text" [(ngModel)]="sendData.text">
+                    <input type="text" class="form-control w-100" name="text" [(ngModel)]="sendData.text"
+                        placeholder="...enter task name">
                     <select class="form-select mt-2 w-100" aria-label="Default select example" name="level"
                         [(ngModel)]="sendData.level">
                         <option value="Prior!">Prior!</option>
@@ -185,7 +186,7 @@
 
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" data-bs-dismiss="modal" class="btn btn-primary">Save changes</button>
+                    <button type="submit" data-bs-dismiss="modal" class="btn btn-primary">Save task</button>
                 </div>
             </form>
         </div>
