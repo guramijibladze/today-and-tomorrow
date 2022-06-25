@@ -11,7 +11,8 @@ import { CatalogueComponent } from './catalogue.component';
 import { FormsModule } from '@angular/forms';
 import { MdbCheckboxModule } from 'mdb-angular-ui-kit/checkbox';
 import { DragDropModule } from '@angular/cdk/drag-drop';
-import { DatePipe } from '@angular/common'
+import { DatePipe } from '@angular/common';
+import { MatCardModule } from '@angular/material/card';
 
 
 
@@ -25,6 +26,7 @@ import { DatePipe } from '@angular/common'
     CatalogueComponent
   ],
   imports: [
+    MatCardModule,
     DragDropModule,
     RouterModule,
     CommonModule,
